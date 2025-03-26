@@ -233,98 +233,102 @@ python src/warmup_lora.py \
     --lora_alpha 32 \
 ```
 
-## 实验结果与启动脚本对应表
+## Experimental Results and corresponding Startup Scripts
 
-以下是实验结果的表格，每个数字都对应一个启动脚本。点击数字即可查看或运行对应的脚本。
+The following table presents the **experimental results**, where each number corresponds to a **startup script**. Clicking on the number allows you to view the corresponding script.
+
+On the left side of the table, parameter selections are marked. Each set of three numbers in the table corresponds to three experimental results based on the choices of `doc_num=3/2/1`.
+
+If the `warm_up` parameter is selected, it is necessary to perform **warm-up** before proceeding with encoding and inference.
 
 ### 2WQA
 
-|                                        | Compare                                                                        | Bridge                                                                         | Inference                                                                      | Composition                                                                    |
-| -------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| **LLaMA-1B**                     | 0.5046/0.4915                                                                  | 0.4595/0.4667                                                                  | 0.2399/0.2472                                                                  | 0.1357/0.1259                                                                  |
-| inference_method=combine warm_up=False | [0.3849/0.3961/0.3627](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2552/0.2276/0.2488](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2292/0.2267/0.2342](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.0894/0.1059/0.0989](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
-| inference_method=combine warm_up=True  | [0.4934/0.4944/0.4960](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.4140/0.3531/0.4127](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2196/0.2294/0.2213](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.1367/0.1001/0.1209](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
-| inference_method=prag warm_up=False    | **[0.4378/0.4389/0.4389](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.2183/0.2216/0.2249](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.1672/0.1630/0.1700](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.0650/0.0656/0.0644](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** |
-| inference_method=prag warm_up=True     | [0.4604/0.4604/0.4593](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.4332/0.4332/0.4298](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.1555/0.1588/0.1573](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.0826/0.0821/0.0761](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
-| inference_method=icl                   | [0.3849/0.4274/0.3872](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2552/0.2243/0.2521](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2292/0.23/0.2413](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)             | [0.0894/0.1118/0.0976](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
-| **Qwen-1.5B**                    | 0.4053/0.4050                                                                  | 0.4420/0.4400                                                                  | 0.1705/0.1630                                                                  | 0.1154/0.0817                                                                  |
-| inference_method=combine warm_up=False | [0.3984/0.3704/0.4302](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3717/0.3775/0.4140](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1234/0.1300/0.1500](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0560/0.0497/0.0703](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
-| inference_method=combine warm_up=True  | [0.3959/0.4188/0.3975](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3052/0.2637/0.2267](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1997/0.2199/0.2327](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1366/0.1216/0.1106](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
-| inference_method=prag warm_up=False    | **[0.4547/0.4589/0.4542](configs/2wikimultihopqa_llama3-8b-instruct.sh)**   | **[0.4249/0.4249/0.4216](configs/2wikimultihopqa_llama3-8b-instruct.sh)**   | [0.1745/0.1765/0.1790](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0670/0.0670/0.0668](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
-| inference_method=prag warm_up=True     | [0.4112/0.4096/0.4112](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.4418/0.4459/0.4363](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1702/0.1707/0.1750](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1073/0.1047/0.1063](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
-| inference_method=icl                   | [0.3875/0.3664/0.4249](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3884/0.3954/0.4108](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1187/0.1280/0.1410](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0568/0.0511/0.0744](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
-| **LLaMA-8B**                     |                                                                                |                                                                                |                                                                                |                                                                                |
-| inference_method=combine warm_up=False |                                                                                |                                                                                |                                                                                |                                                                                |
-| inference_method=combine warm_up=True  |                                                                                |                                                                                |                                                                                |                                                                                |
-| inference_method=prag warm_up=False    |                                                                                |                                                                                |                                                                                |                                                                                |
-| inference_method=prag warm_up=True     |                                                                                |                                                                                |                                                                                |                                                                                |
-| inference_method=icl                   |                                                                                |                                                                                |                                                                                |                                                                                |
+|                                                       | Compare                                                                        | Bridge                                                                         | Inference                                                                      | Composition                                                                    |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| **LLaMA-1B**                                    | 0.5046/0.4915                                                                  | 0.4595/0.4667                                                                  | 0.2399/0.2472                                                                  | 0.1357/0.1259                                                                  |
+| inference_method=combine warm_up=False doc_num=3/2/1  | [0.3849/0.3961/0.3627](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2552/0.2276/0.2488](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2292/0.2267/0.2342](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.0894/0.1059/0.0989](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
+| inference_method=combine warm_up=True doc_num=3/2/1   | [0.4934/0.4944/0.4960](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.4140/0.3531/0.4127](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2196/0.2294/0.2213](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.1367/0.1001/0.1209](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
+| inference_method=prag warm_up=False doc_num=3/2/1     | **[0.4378/0.4389/0.4389](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.2183/0.2216/0.2249](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.1672/0.1630/0.1700](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** | **[0.0650/0.0656/0.0644](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)** |
+| inference_method=prag warm_up=True doc_num=3/2/1      | [0.4604/0.4604/0.4593](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.4332/0.4332/0.4298](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.1555/0.1588/0.1573](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.0826/0.0821/0.0761](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
+| inference_method=icl doc_num=3/2/1                   | [0.3849/0.4274/0.3872](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2552/0.2243/0.2521](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           | [0.2292/0.23/0.2413](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)             | [0.0894/0.1118/0.0976](configs/2wikimultihopqa_llama3.2-1b-instruct.sh)           |
+| **Qwen-1.5B**                                   | 0.4053/0.4050                                                                  | 0.4420/0.4400                                                                  | 0.1705/0.1630                                                                  | 0.1154/0.0817                                                                  |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.3984/0.3704/0.4302](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3717/0.3775/0.4140](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1234/0.1300/0.1500](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0560/0.0497/0.0703](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.3959/0.4188/0.3975](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3052/0.2637/0.2267](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1997/0.2199/0.2327](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1366/0.1216/0.1106](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
+| inference_method=prag warm_up=False doc_num=3/2/1    | **[0.4547/0.4589/0.4542](configs/2wikimultihopqa_llama3-8b-instruct.sh)**   | **[0.4249/0.4249/0.4216](configs/2wikimultihopqa_llama3-8b-instruct.sh)**   | [0.1745/0.1765/0.1790](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0670/0.0670/0.0668](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
+| inference_method=prag warm_up=True doc_num=3/2/1     | [0.4112/0.4096/0.4112](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.4418/0.4459/0.4363](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1702/0.1707/0.1750](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1073/0.1047/0.1063](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
+| inference_method=icl doc_num=3/2/1                   | [0.3875/0.3664/0.4249](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.3884/0.3954/0.4108](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.1187/0.1280/0.1410](configs/2wikimultihopqa_llama3-8b-instruct.sh)             | [0.0568/0.0511/0.0744](configs/2wikimultihopqa_llama3-8b-instruct.sh)             |
+| **LLaMA-8B**                                    |                                                                                |                                                                                |                                                                                |                                                                                |
+| inference_method=combine warm_up=False doc_num=3/2/1 |                                                                                |                                                                                |                                                                                |                                                                                |
+| inference_method=combine warm_up=True doc_num=3/2/1  |                                                                                |                                                                                |                                                                                |                                                                                |
+| inference_method=prag warm_up=False doc_num=3/2/1    |                                                                                |                                                                                |                                                                                |                                                                                |
+| inference_method=prag warm_up=True doc_num=3/2/1     |                                                                                |                                                                                |                                                                                |                                                                                |
+| inference_method=icl doc_num=3/2/1                   |                                                                                |                                                                                |                                                                                |                                                                                |
 
 ### HotpotQA
 
-|                                        | Bridge                         | Compare                        |
-| -------------------------------------- | ------------------------------ | ------------------------------ |
-| **LLaMA-1B**                     | 0.2282/                        | 0.4271/                        |
-| inference_method=combine warm_up=False | [0.2141/0.2231/0.2042](configs/hotpotqa_llama3.2-1b-instruct.sh)             | [0.414/0.4351/0.4491](configs/hotpotqa_llama3.2-1b-instruct.sh)            |
-| inference_method=combine warm_up=True  | [0.2222/0.198/0.2088](configs/hotpotqa_llama3.2-1b-instruct.sh)            | [0.3931/0.4024/0.3954](configs/hotpotqa_llama3.2-1b-instruct.sh)           |
-| inference_method=prag warm_up=False    | **[0.1294/0.1294/0.1294](configs/hotpotqa_llama3.2-1b-instruct.sh)** | **[0.3799/0.3854/0.3888](configs/hotpotqa_llama3.2-1b-instruct.sh)** |
-| inference_method=prag warm_up=True     | [0.1312/0.1296/0.1345](configs/hotpotqa_llama3.2-1b-instruct.sh)           | [0.3838/0.3808/0.3771](configs/hotpotqa_llama3.2-1b-instruct.sh)           |
-| inference_method=icl                   | [0.2221/0.2256/0.2119](configs/hotpotqa_llama3.2-1b-instruct.sh)           | [0.4183/0.422/0.4484](configs/hotpotqa_llama3.2-1b-instruct.sh)            |
-| **Qwen-1.5B**                    | 0.2383/                        | 0.5037/                        |
-| inference_method=combine warm_up=False | [0.1641/0.1613/0.1416](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           | [0.3551/0.3049/0.2765](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=combine warm_up=True  | [0.2357/0.2247/0.2211](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           | [0.4045/0.3998/0.3722](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=prag warm_up=False    | [0.125/0.128/0.128](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)              | [0.4007/0.3905/0.3862](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=prag warm_up=True     | [0.1416/0.1496/0.1479](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           | [0.5132/0.5171/0.5064](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=icl                   | [0.1619/0.1549/0.1386](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           | [0.3713/0.3139/0.2832](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)           |
-| **LLaMA-8B**                     |                                |                                |
-| inference_method=combine warm_up=False |                                |                                |
-| inference_method=combine warm_up=True  |                                |                                |
-| inference_method=prag warm_up=False    |                                |                                |
-| inference_method=prag warm_up=True     |                                |                                |
-| inference_method=icl                   |                                |                                |
+|                                                       | Bridge                                                                  | Compare                                                                 |
+| ----------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **LLaMA-1B**                                    | 0.2282/                                                                 | 0.4271/                                                                 |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.2141/0.2231/0.2042](configs/hotpotqa_llama3.2-1b-instruct.sh)           | [0.414/0.4351/0.4491](configs/hotpotqa_llama3.2-1b-instruct.sh)            |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.2222/0.198/0.2088](configs/hotpotqa_llama3.2-1b-instruct.sh)            | [0.3931/0.4024/0.3954](configs/hotpotqa_llama3.2-1b-instruct.sh)           |
+| inference_method=prag warm_up=False doc_num=3/2/1    | **[0.1294/0.1294/0.1294](configs/hotpotqa_llama3.2-1b-instruct.sh)** | **[0.3799/0.3854/0.3888](configs/hotpotqa_llama3.2-1b-instruct.sh)** |
+| inference_method=prag warm_up=True doc_num=3/2/1     | [0.1312/0.1296/0.1345](configs/hotpotqa_llama3.2-1b-instruct.sh)           | [0.3838/0.3808/0.3771](configs/hotpotqa_llama3.2-1b-instruct.sh)           |
+| inference_method=icl doc_num=3/2/1                   | [0.2221/0.2256/0.2119](configs/hotpotqa_llama3.2-1b-instruct.sh)           | [0.4183/0.422/0.4484](configs/hotpotqa_llama3.2-1b-instruct.sh)            |
+| **Qwen-1.5B**                                   | 0.2383/                                                                 | 0.5037/                                                                 |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.1641/0.1613/0.1416](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.3551/0.3049/0.2765](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.2357/0.2247/0.2211](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.4045/0.3998/0.3722](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=False doc_num=3/2/1    | [0.125/0.128/0.128](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)             | [0.4007/0.3905/0.3862](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=True doc_num=3/2/1     | [0.1416/0.1496/0.1479](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.5132/0.5171/0.5064](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=icl doc_num=3/2/1                   | [0.1619/0.1549/0.1386](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.3713/0.3139/0.2832](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| **LLaMA-8B**                                    |                                                                         |                                                                         |
+| inference_method=combine warm_up=False doc_num=3/2/1 |                                                                         |                                                                         |
+| inference_method=combine warm_up=True doc_num=3/2/1  |                                                                         |                                                                         |
+| inference_method=prag warm_up=False doc_num=3/2/1    |                                                                         |                                                                         |
+| inference_method=prag warm_up=True doc_num=3/2/1     |                                                                         |                                                                         |
+| inference_method=icl doc_num=3/2/1                   |                                                                         |                                                                         |
 
 ### PopQA
 
-|                                        | PopQA                          |
-| -------------------------------------- | ------------------------------ |
-| **LLaMA-1B**                     | 0.2961/                        |
-| inference_method=combine warm_up=False | [0.1803/0.1487/0.1751](configs/popqa_llama3.2-1b-instruct.sh)           |
-| inference_method=combine warm_up=True  | [0.3721/0.3837/0.3576](configs/popqa_llama3.2-1b-instruct.sh)           |
-| inference_method=prag warm_up=False    | **[0.0249/0.0263/0.0241](configs/popqa_llama3.2-1b-instruct.sh)** |
-| inference_method=prag warm_up=True     | [0.1906/0.1939/0.1872](configs/popqa_llama3.2-1b-instruct.sh)           |
-| inference_method=icl                   | [0.1637/0.1364/0.1637](configs/popqa_llama3.2-1b-instruct.sh)           |
-| **Qwen-1.5B**                    | 0.2261/                        |
-| inference_method=combine warm_up=False | [0.1031/0.0958/0.1041](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=combine warm_up=True  | [0.3197/0.3112/0.3053](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=prag warm_up=False    | [0.0268/0.0255/0.0249](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=prag warm_up=True     | [0.1229/0.1229/0.1207](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=icl                   | [0.0999/0.093/0.0976](configs/popqa_qwen2.5-1.5b-instruct.sh)            |
-| **LLaMA-8B**                     |                                |
-| inference_method=combine warm_up=False |                                |
-| inference_method=combine warm_up=True  |                                |
-| inference_method=prag warm_up=False    |                                |
-| inference_method=prag warm_up=True     |                                |
-| inference_method=icl                   |                                |
+|                                                       | PopQA                                                                |
+| ----------------------------------------------------- | -------------------------------------------------------------------- |
+| **LLaMA-1B**                                    | 0.2961/                                                              |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.1803/0.1487/0.1751](configs/popqa_llama3.2-1b-instruct.sh)           |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.3721/0.3837/0.3576](configs/popqa_llama3.2-1b-instruct.sh)           |
+| inference_method=prag warm_up=False doc_num=3/2/1    | **[0.0249/0.0263/0.0241](configs/popqa_llama3.2-1b-instruct.sh)** |
+| inference_method=prag warm_up=True doc_num=3/2/1     | [0.1906/0.1939/0.1872](configs/popqa_llama3.2-1b-instruct.sh)           |
+| inference_method=icl doc_num=3/2/1                   | [0.1637/0.1364/0.1637](configs/popqa_llama3.2-1b-instruct.sh)           |
+| **Qwen-1.5B**                                   | 0.2261/                                                              |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.1031/0.0958/0.1041](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.3197/0.3112/0.3053](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=False doc_num=3/2/1    | [0.0268/0.0255/0.0249](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=True doc_num=3/2/1     | [0.1229/0.1229/0.1207](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=icl doc_num=3/2/1                   | [0.0999/0.093/0.0976](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
+| **LLaMA-8B**                                    |                                                                      |
+| inference_method=combine warm_up=False doc_num=3/2/1 |                                                                      |
+| inference_method=combine warm_up=True doc_num=3/2/1  |                                                                      |
+| inference_method=prag warm_up=False doc_num=3/2/1    |                                                                      |
+| inference_method=prag warm_up=True doc_num=3/2/1     |                                                                      |
+| inference_method=icl doc_num=3/2/1                   |                                                                      |
 
 ### CWQ
 
-|                                        | CWQ                           |
-| -------------------------------------- | ----------------------------- |
-| **LLaMA-1B**                     | 0.4101/0.3842                 |
+|                                        | CWQ                                                                               |
+| -------------------------------------- | --------------------------------------------------------------------------------- |
+| **LLaMA-1B**                     | 0.4101/0.3842                                                                     |
 | inference_method=combine warm_up=False | [0.3732/0.3952/0.3967](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
 | inference_method=combine warm_up=True  | [0.4269/0.427/0.4329](configs/complexwebquestions_llama3.2-1b-instruct.sh)           |
 | inference_method=prag warm_up=False    | **[0.363/0.3642/0.3636](configs/complexwebquestions_llama3.2-1b-instruct.sh)** |
 | inference_method=prag warm_up=True     | [0.3811/0.3828/0.3828](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
 | inference_method=icl                   | [0.375/0.3903/0.384](configs/complexwebquestions_llama3.2-1b-instruct.sh)            |
-| **Qwen-1.5B**                    | 0.3495/0.3209/                |
-| inference_method=combine warm_up=False | [0.283/0.2977/0.2747](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=combine warm_up=True  | [0.412/0.4254/0.4228](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)           |
-| inference_method=prag warm_up=False    | [0.2676/0.2689/0.2695](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
-| inference_method=prag warm_up=True     | [0.4574/0.4563/0.4513](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
-| inference_method=icl                   | [0.2823/0.2905/0.271](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)           |
-| **LLaMA-8B**                     |                               |
-| inference_method=combine warm_up=False |                               |
-| inference_method=combine warm_up=True  |                               |
-| inference_method=prag warm_up=False    |                               |
-| inference_method=prag warm_up=True     |                               |
-| inference_method=icl                   |                               |
+| **Qwen-1.5B**                    | 0.3495/0.3209/                                                                    |
+| inference_method=combine warm_up=False | [0.283/0.2977/0.2747](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=combine warm_up=True  | [0.412/0.4254/0.4228](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=False    | [0.2676/0.2689/0.2695](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
+| inference_method=prag warm_up=True     | [0.4574/0.4563/0.4513](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
+| inference_method=icl                   | [0.2823/0.2905/0.271](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
+| **LLaMA-8B**                     |                                                                                   |
+| inference_method=combine warm_up=False |                                                                                   |
+| inference_method=combine warm_up=True  |                                                                                   |
+| inference_method=prag warm_up=False    |                                                                                   |
+| inference_method=prag warm_up=True     |                                                                                   |
+| inference_method=icl                   |                                                                                   |
