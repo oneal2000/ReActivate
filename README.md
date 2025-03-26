@@ -20,7 +20,7 @@ All the prompts used in the experiment are displayed in the `all_prompt.md` file
 ```
 conda create -n prag python=3.10.4
 conda activate prag
-pip install torch==2.1.0
+pip install torch==1.13.1
 pip install -r requirements.txt
 ```
 
