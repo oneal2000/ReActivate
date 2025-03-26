@@ -237,6 +237,16 @@ python src/warmup_lora.py \
 
 The following table presents the **experimental results**, where each number corresponds to a **startup script**. Clicking on the number allows you to view the corresponding script.
 
+The two data points in the first row respectively represent the data from the PRAG paper and the data obtained from reproduction.
+
+In rows two through six, the three data points from left to right respectively represent the selection of 3, 2, and 1 documents.
+
+* The second row combines the IA3 method with in-context-learning (without warm-up).
+* The third row combines the IA3 method with in-context-learning (with warm-up).
+* The fourth row only uses the IA3 method (without warm-up).
+* The fifth row only uses the IA3 method (with warm-up).
+* The sixth row only uses in-context-learning method.
+
 On the left side of the table, parameter selections are marked. Each set of three numbers in the table corresponds to three experimental results based on the choices of `doc_num=3/2/1`.
 
 If the `warm_up` parameter is selected, it is necessary to perform **warm-up** before proceeding with encoding and inference.
