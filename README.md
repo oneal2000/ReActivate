@@ -285,7 +285,7 @@ If the `warm_up` parameter is selected, it is necessary to perform **warm-up** b
 | **Qwen-1.5B**                                   | 0.2383/                                                                 | 0.5037/                                                                 |
 | inference_method=combine warm_up=False doc_num=3/2/1 | [0.1641/0.1613/0.1416](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.3551/0.3049/0.2765](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
 | inference_method=combine warm_up=True doc_num=3/2/1  | [0.2357/0.2247/0.2211](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.4045/0.3998/0.3722](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
-| inference_method=prag warm_up=False doc_num=3/2/1    | [0.1250/0.1280/0.1280](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)             | [0.4007/0.3905/0.3862](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=prag warm_up=False doc_num=3/2/1    | [0.1250/0.1280/0.1280](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.4007/0.3905/0.3862](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
 | inference_method=prag warm_up=True doc_num=3/2/1     | [0.1416/0.1496/0.1479](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.5132/0.5171/0.5064](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
 | inference_method=icl doc_num=3/2/1                   | [0.1619/0.1549/0.1386](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          | [0.3713/0.3139/0.2832](configs/hotpotqa_qwen2.5-1.5b-instruct.sh)          |
 | **LLaMA-8B**                                    |                                                                         |                                                                         |
@@ -308,7 +308,7 @@ If the `warm_up` parameter is selected, it is necessary to perform **warm-up** b
 | inference_method=combine warm_up=True doc_num=3/2/1  | [0.3197/0.3112/0.3053](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
 | inference_method=prag warm_up=False doc_num=3/2/1    | [0.0268/0.0255/0.0249](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
 | inference_method=prag warm_up=True doc_num=3/2/1     | [0.1229/0.1229/0.1207](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
-| inference_method=icl doc_num=3/2/1                   | [0.0999/0.0930/0.0976](configs/popqa_qwen2.5-1.5b-instruct.sh)           |
+| inference_method=icl doc_num=3/2/1                   | [0.0999/0.0930/0.0976](configs/popqa_qwen2.5-1.5b-instruct.sh)          |
 | **LLaMA-8B**                                    |                                                                      |
 | inference_method=prag warm_up=False doc_num=3/1      | [0.0964/0.1169](configs/popqa_llama3-8b-instruct.sh)                    |
 | inference_method=prag warm_up=True doc_num=3/1       | [0.2884/0.3024](configs/popqa_llama3-8b-instruct.sh)                    |
@@ -320,17 +320,48 @@ If the `warm_up` parameter is selected, it is necessary to perform **warm-up** b
 | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
 | **LLaMA-1B**                                    | 0.4101/0.3842                                                                     |
 | inference_method=combine warm_up=False doc_num=3/2/1 | [0.3732/0.3952/0.3967](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
-| inference_method=combine warm_up=True doc_num=3/2/1   | [0.4269/0.4270/0.4329](configs/complexwebquestions_llama3.2-1b-instruct.sh)           |
+| inference_method=combine warm_up=True doc_num=3/2/1   | [0.4269/0.4270/0.4329](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
 | inference_method=prag warm_up=False doc_num=3/2/1    | **[0.363/0.3642/0.3636](configs/complexwebquestions_llama3.2-1b-instruct.sh)** |
 | inference_method=prag warm_up=True doc_num=3/2/1     | [0.3811/0.3828/0.3828](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
-| inference_method=icl doc_num=3/2/1                   | [0.3750/0.3903/0.3840](configs/complexwebquestions_llama3.2-1b-instruct.sh)            |
+| inference_method=icl doc_num=3/2/1                   | [0.3750/0.3903/0.3840](configs/complexwebquestions_llama3.2-1b-instruct.sh)          |
 | **Qwen-1.5B**                                   | 0.3495/0.3209/                                                                    |
-| inference_method=combine warm_up=False doc_num=3/2/1 | [0.2830/0.2977/0.2747](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
-| inference_method=combine warm_up=True doc_num=3/2/1  | [0.4120/0.4254/0.4228](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=combine warm_up=False doc_num=3/2/1 | [0.2830/0.2977/0.2747](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
+| inference_method=combine warm_up=True doc_num=3/2/1  | [0.4120/0.4254/0.4228](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
 | inference_method=prag warm_up=False doc_num=3/2/1    | [0.2676/0.2689/0.2695](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
 | inference_method=prag warm_up=True doc_num=3/2/1     | [0.4574/0.4563/0.4513](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
-| inference_method=icl doc_num=3/2/1                   | [0.2823/0.2905/0.2710](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)          |
+| inference_method=icl doc_num=3/2/1                   | [0.2823/0.2905/0.2710](configs/complexwebquestions_qwen2.5-1.5b-instruct.sh)         |
 | **LLaMA-8B**                                    |                                                                                   |
 | inference_method=prag warm_up=False doc_num=3/1      | [0.4315/0.4310](configs/complexwebquestions_llama3-8b-instruct.sh)                   |
 | inference_method=prag warm_up=True doc_num=3/1        | [0.5594/0.5597](configs/complexwebquestions_llama3-8b-instruct.sh)                   |
 | inference_method=icl doc_num=3/1                     | [0.3545/0.3723](configs/complexwebquestions_llama3-8b-instruct.sh)                   |
+
+### Further research(ongoing)
+
+We extracted the values of the activation before and after the reweight operation by multiplying with the IA3 parameters, and observed their distributions.
+You only need to change the program running in the script from `inference.py` to `get_activation.py` to obtain data in the following format.
+
+```
+qid: {
+    layer_name: string
+    before IA3: []
+    after IA3: []
+    IA3 Vector: []
+}
+```
+
+For example, running the following [script](configs/complexwebquestions_llama3.2-1b-instruct_activation.sh) will obtain the data for the llama-3.2-1b-instruct model on the ComplexWebQuestions dataset:
+
+```
+python3 src/get_activation.py \
+    --model_name=llama3.2-1b-instruct \
+    --dataset=complexwebquestions \
+    --sample=5 \
+    --num_train_epochs=1 \
+    --learning_rate=0.0003 \
+    --lora_rank=2 \
+    --lora_alpha=32 \
+    --max_new_tokens=20 \
+    --inference_method=prag \
+    --IA3 \
+    --doc_num=3 \
+```
