@@ -1,0 +1,12 @@
+python3 src/get_activation.py \
+    --model_name=llama3.2-1b-instruct \
+    --dataset=complexwebquestions \
+    --sample=5 \
+    --num_train_epochs=1 \
+    --learning_rate=0.0003 \
+    --lora_rank=2 \
+    --lora_alpha=32 \
+    --max_new_tokens=20 \
+    --inference_method=prag \
+    --IA3 \
+    --doc_num=3 \
