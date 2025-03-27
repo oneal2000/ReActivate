@@ -335,7 +335,7 @@ If the `warm_up` parameter is selected, it is necessary to perform **warm-up** b
 | inference_method=prag warm_up=True doc_num=3/1        | [0.5594/0.5597](configs/complexwebquestions_llama3-8b-instruct.sh)                   |
 | inference_method=icl doc_num=3/1                     | [0.3545/0.3723](configs/complexwebquestions_llama3-8b-instruct.sh)                   |
 
-### Further research(ongoing)
+## Further research(ongoing)
 
 We extracted the values of the activation before and after the reweight operation by multiplying with the IA3 parameters, and observed their distributions.
 You only need to change the program running in the script from `inference.py` to `get_activation.py` to obtain data in the following format.
